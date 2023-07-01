@@ -41,6 +41,7 @@ const handler = NextAuth({
 
                 //if not, create a new user
 
+
                 if(!userExists) {
                     await User.create({
                         email: profile.email,
@@ -51,6 +52,7 @@ const handler = NextAuth({
 
                 return true
             } catch (error) {
+                                
                 console.log("Error checking if user exists: ", error.message);
                 return false
             }
