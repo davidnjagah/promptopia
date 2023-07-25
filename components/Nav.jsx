@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
@@ -11,12 +12,20 @@ const Nav = () => {
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
+  const router = useRouter();
+
   useEffect(() => {
     (async () => {
       const res = await getProviders();
       setProviders(res);
     })();
   }, []);
+
+  const handleSignOut = () => {
+    signOut({
+      callbackUrl: `${window.location.origin}`
+    });
+  };
 
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
@@ -39,7 +48,7 @@ const Nav = () => {
               Create Post
             </Link>
 
-            <button type='button' onClick={signOut} className='outline_btn'>
+            <button type='button' onClick={handleSignOut} className='outline_btn'>
               Sign Out
             </button>
 

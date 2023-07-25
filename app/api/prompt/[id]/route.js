@@ -17,7 +17,7 @@ export const GET = async (request, { params }) => {
 }
 
 //PATCH (update)
-export  const PATCH = async (request, {params}) => {
+export const PATCH = async (request, {params}) => {
  const { prompt, tag} = await request.json();
 
  try {
@@ -42,7 +42,7 @@ export  const PATCH = async (request, {params}) => {
 
 
 //DELETE (delete)
-export  const DELETE = async (request, {params}) => { 
+export const DELETE = async (request, {params}) => { 
     try {
         await connectToDB();
 
